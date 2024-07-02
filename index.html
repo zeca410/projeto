@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Limpeza de Ruas - Amarante</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Projeto de Limpeza de Ruas - Amarante</h1>
+        </header>
+        <main>
+            <div class="map-container">
+                <div id="map"></div>
+                <button id="save-data" class="save-button">Salvar Dados</button>
+            </div>
+            <div class="info">
+                <h2>Informações de Limpeza</h2>
+                <p>Distância total: <span id="total-distance">0</span> metros</p>
+                <p>Distância limpa: <input type="number" id="cleaned-distance" value="0" /> metros</p>
+                <p>Distância restante: <span id="remaining-distance">0</span> metros</p>
+                <button id="update-button">Atualizar Progresso</button>
+                <button id="load-data">Carregar Dados</button>
+                <input type="file" id="file-input" style="display:none;" />
+            </div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
