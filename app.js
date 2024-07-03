@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    var amaranteCoordinates = [41.2721, -8.0826];
 
+    var amaranteCoordinates = [41.2721, -8.0826];
+// Config do mapa
     var map = L.map('map', {
         center: amaranteCoordinates,
-        zoom: 15,
-        minZoom: 14,
-        maxZoom: 18
+        zoom: 14,
+        minZoom: 12,
+        maxZoom: 20
     });
-
+// Tilelayer pra colocar o mapa na tela
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: 'Projeto Limpezas - Amarante <a href="https://github.com/zeca410/projeto1">Código Fonte</a>'
     }).addTo(map);
-
+// Limites Latlng do mapa
     var southWest = L.latLng(41.2611, -8.1016),
         northEast = L.latLng(41.2831, -8.0636);
     var bounds = L.latLngBounds(southWest, northEast);
@@ -28,10 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (waypoints.length == 2) {
             routeControl = L.Routing.control({
                 waypoints: waypoints,
-                show:false,
+                show: false,
                 createMarker: function (i, waypoint, n) {
                     return L.marker(waypoint.latLng, { draggable: true })
-                    show:false
                         .on('dragend', function (e) {
                             waypoints[i] = e.target.getLatLng();
                             updateRoute();
@@ -48,18 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
+// funcao de clique do mapa
     map.on('click', function (e) {
         if (waypoints.length < 2) {
             waypoints.push(e.latlng);
             updateRoute();
         }
     });
-
+// Funcoes dos botoes da interface^
+// Atualizar Progresso
     document.getElementById('update-button').addEventListener('click', function () {
+        // implementar if depois
         updateRemainingDistance();
     });
-
+// Salvar dados e funcao
     document.getElementById('save-data').addEventListener('click', function () {
         var data = {
             waypoints: waypoints.map(latlng => [latlng.lat, latlng.lng]),
@@ -76,11 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
         a.click();
         document.body.removeChild(a);
     });
-
+// Carregar Dados
     document.getElementById('load-data').addEventListener('click', function () {
         document.getElementById('file-input').click();
     });
-
+// Funcao de ler os dados carregados
     document.getElementById('file-input').addEventListener('change', function (e) {
         var file = e.target.files[0];
         if (file) {
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             reader.readAsText(file);
         }
     });
-
+// funcao da distancia restante
     function updateRemainingDistance() {
         var totalDistance = parseInt(document.getElementById('total-distance').innerText);
         var cleanedDistance = parseInt(document.getElementById('cleaned-distance').value);
