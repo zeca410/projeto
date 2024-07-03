@@ -106,3 +106,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('remaining-distance').innerText = remainingDistance;
     }
 });
+
