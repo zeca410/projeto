@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projeto de Limpeza de Ruas - Amarante</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link
       rel="stylesheet"
@@ -12,30 +16,58 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <main>
+    <div class="main-container">
+      <div class="info-container">
+        <div class="info-box">
+          Distância restante: <span id="remaining-distance">0</span> metros
+        </div>
+        <div class="info-box">
+          Distância total: <span id="total-distance">0</span>
+        </div>
+        <div class="info-box">Data: <span id="date">Carregando...</span></div>
+        <div class="info-box">Hora: <span id="time">Carregando...</span></div>
+      </div>
+
+      <div class="content-wrapper">
         <div class="map-container">
           <div id="map"></div>
         </div>
-        <div class="info">
-          <h2>Informações de Limpeza</h2>
-          <p>Distância total: <span id="total-distance">0</span> metros</p>
-          <p>
-            Distância limpa:
-            <input type="number" id="cleaned-distance" value="0" /> metros
-          </p>
-          <p>
-            Distância restante: <span id="remaining-distance">0</span> metros
-          </p>
+
+        <div class="fill-buttons-wrapper">
+          <label for="cleaned-distance">Distância limpa:</label>
+          <input type="number" id="cleaned-distance" value="0" class="fill" />
+          <label for="name">Nome:</label>
+          <input type="text" id="name" class="fill" />
+          <div class="disclaimer">
+            * A data, hora e nome são permanentemente salvos na arquivo.
+          </div>
         </div>
-        <div class="buttons">
-          <button id="update-button">Atualizar Progresso</button>
-          <button id="load-data">Carregar Dados</button>
-          <button id="save-data" class="save-button">Salvar Dados</button>
-          <input type="file" id="file-input" style="display: none" />
-        </div>
-      </main>
+      </div>
     </div>
+
+    <div class="button-container">
+      <button id="update-button" class="btn">Atualizar Progresso</button>
+      <button id="load-data" class="btn">Carregar Dados</button>
+      <button id="save-data" class="btn">Salvar Dados</button>
+      <input
+        type="file"
+        id="file-input"
+        style="display: none"
+        aria-label="Carregar arquivo de dados"
+      />
+    </div>
+
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span class="close-btn" id="closeBtn">&times;</span>
+        <h2>Atenção!</h2>
+        <p>
+          Caso o layout do site esteja desorganizado/desconfigurado, por favor,
+          diminua o zoom. Estou tentando resolver essa situação.
+        </p>
+      </div>
+    </div>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="app.js"></script>
